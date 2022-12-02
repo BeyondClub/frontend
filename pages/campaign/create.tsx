@@ -11,8 +11,8 @@ export default function Register() {
 			campaign_type: '',
 			collectible_price: '',
 			amount_of_collectibles: '',
-			expirience: '',
-			target: '',
+			experience: '',
+			target: 'everyone',
 		},
 	});
 
@@ -28,7 +28,7 @@ export default function Register() {
 							e.preventDefault();
 						}}
 					>
-						<TextInput label="Campaign Name" />
+						<TextInput label="Campaign Name" {...form.getInputProps('campaign_name')} />
 
 						<div className="grid grid-cols-3">
 							<ImageUpload label="Digital Collectible image" isDetailsHidden />
@@ -39,6 +39,7 @@ export default function Register() {
 						<Input.Wrapper label="Campaign Type">
 							<div>
 								<SegmentedControl
+									{...form.getInputProps('campaign_type')}
 									data={[
 										{ label: 'Paid', value: 'paid' },
 										{ label: 'Lens Post', value: 'lens_post' },
@@ -47,13 +48,23 @@ export default function Register() {
 								/>
 							</div>
 						</Input.Wrapper>
-						<TextInput label="Collectible Price" />
-						<NumberInput label="Amount of Collectibles" />
 
-						<Input.Wrapper label="Expirience">
+						{form.values.campaign_type === 'paid' ? (
+							<>
+								<TextInput label="Collectible Price" {...form.getInputProps('collectible_price')} />
+								<NumberInput
+									label="Amount of Collectibles"
+									{...form.getInputProps('amount_of_collectibles')}
+								/>
+							</>
+						) : null}
+
+						<Input.Wrapper label="Experience">
 							<div>
 								<SegmentedControl
+									{...form.getInputProps('experience')}
 									data={[
+										{ label: 'Collectable', value: 'collectable' },
 										{ label: 'Event Ticket', value: 'event_ticket' },
 										{ label: 'Video', value: 'video' },
 										{ label: 'Discount', value: 'discount' },
@@ -62,9 +73,12 @@ export default function Register() {
 							</div>
 						</Input.Wrapper>
 
+						{form.values.experience === 'video' ? <>SHOW VIDEO UPLOAD USING THELIVEPEER</> : null}
+
 						<Input.Wrapper label="Target">
 							<div>
 								<SegmentedControl
+									{...form.getInputProps('target')}
 									data={[
 										{ label: 'Everyone', value: 'everyone' },
 										{ label: 'NFT Holder', value: 'nft_holder' },

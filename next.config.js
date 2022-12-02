@@ -1,3 +1,7 @@
-module.exports = {
-  reactStrictMode: true,
-}
+const { withGlobalCss } = require('next-global-css');
+
+const withConfig = withGlobalCss();
+
+module.exports = withConfig({
+	reactStrictMode: true,
+});

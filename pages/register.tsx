@@ -26,8 +26,11 @@ export default function Register() {
 							e.preventDefault();
 						}}
 					>
-						<TextInput label="Brand Name" />
-						<TextInput label="Username (it will be your URL. ex: https://beyondclub.xyz/username)" />
+						<TextInput label="Brand Name" {...form.getInputProps('brand_name')} />
+						<TextInput
+							label="Username (it will be your URL. ex: https://beyondclub.xyz/username)"
+							{...form.getInputProps('username')}
+						/>
 						<Input.Wrapper label="Connect your Lens account">
 							<div className="mt-2">
 								<Button color="dark" radius={'md'}>
