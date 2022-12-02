@@ -4,6 +4,7 @@ import { useForm } from '@mantine/form';
 import Card from 'components/common/Card';
 import ImageUpload from 'components/common/ImageUpload';
 import Layout from 'components/layout';
+import dayjs from 'dayjs';
 
 export default function Register() {
 	const form = useForm({
@@ -16,7 +17,7 @@ export default function Register() {
 			amount_of_collectibles: '',
 			experience: 'collectable',
 			target: 'everyone',
-			duration: [null, null],
+			duration: [new Date(dayjs().startOf('month').toDate()), new Date(dayjs().endOf('month').toDate())],
 		},
 	});
 
@@ -39,17 +40,19 @@ export default function Register() {
 							onUploadFile={(file) => {
 								form.setFieldValue('cover_image', file);
 							}}
+							selectedFile={form.values.cover_image}
 						/>
 
 						<Input.Wrapper label="Campaign Type">
 							<div>
 								<SegmentedControl
-									{...form.getInputProps('campaign_type')}
 									data={[
 										{ label: 'Paid', value: 'paid' },
 										{ label: 'Lens Post', value: 'lens_post' },
 										{ label: 'Purchase 5 times', value: 'purchase_5times' },
 									]}
+									onChange={(val) => form.setFieldValue('campaign_type', val)}
+									{...form.getInputProps('campaign_type')}
 								/>
 							</div>
 						</Input.Wrapper>
@@ -96,7 +99,9 @@ export default function Register() {
 						<DateRangePicker
 							label="Duration"
 							placeholder=""
+							//@ts-ignore
 							value={form.values.duration}
+							//@ts-ignore
 							onChange={(val, val2) => form.setFieldValue('duration', [val, val2])}
 						/>
 
@@ -112,6 +117,7 @@ export default function Register() {
 								onUploadFile={(file) => {
 									form.setFieldValue('collectible_image', file);
 								}}
+								selectedFile={form.values.collectible_image}
 							/>
 						</div>
 

@@ -1,6 +1,7 @@
 import { Button } from '@mantine/core';
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
 import { shortenAddress } from 'libs/helpers';
+import Link from 'next/link';
 
 const Layout = ({ children, className }) => {
 	const { connect, address, loading: eoaWalletLoading } = useWeb3AuthContext();
@@ -9,7 +10,9 @@ const Layout = ({ children, className }) => {
 		<section className={className}>
 			<header className="mx-auto max-w-screen-xl px-1 md:px-4 sm:px-6 relative py-10">
 				<div className="flex justify-between">
-					<b>BeyondClub</b>
+					<Link href="/" passHref className="cursor-pointer">
+						<b>BeyondClub</b>
+					</Link>
 
 					{address ? (
 						<button className="border px-4 py-2 text-sm bg-white rounded-md">

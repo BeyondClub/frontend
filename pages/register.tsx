@@ -1,9 +1,11 @@
 import { Button, Input, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Layout from 'components/layout';
+
+import ConnectButtonLink from 'components/LensVerification/LensSignIn';
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
 import { UserLensProfile } from 'graphql/queries';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
 import Card from '../components/common/Card';
 import ImageUpload from '../components/common/ImageUpload';
@@ -14,15 +16,17 @@ const RegiserWrapper = () => {
 	if (address) {
 		return <Register address={address} />;
 	}
-	return null;
+	return <p className="text-center text-gray-500">Loading!</p>;
 };
 
 const Register = ({ address }) => {
+	const [ethAddress, setAddress] = useState(address);
+
 	const [result] = useQuery({
 		query: UserLensProfile,
 		variables: {
 			request: {
-				ownedBy: address,
+				ownedBy: ethAddress,
 			},
 		},
 	});
@@ -46,8 +50,6 @@ const Register = ({ address }) => {
 		}
 	}, [result]);
 
-	console.log(result);
-
 	return (
 		<Layout className="bg-blue-50 min-h-screen">
 			<div className="mx-auto max-w-screen-md px-1 md:px-4 sm:px-6 relative py-5">
@@ -61,23 +63,22 @@ const Register = ({ address }) => {
 						}}
 					>
 						<TextInput label="Brand Name" {...form.getInputProps('brand_name')} />
-						<TextInput
-							label="Username (it will be your URL. ex: https://beyondclub.xyz/u/username)"
-							{...form.getInputProps('username')}
-						/>
+						<div>
+							<TextInput label="Username" {...form.getInputProps('username')} />
+
+							<p className="text-sm text-gray-500 mt-1">
+								it will be your URL. ex: https://beyondclub.xyz/u/{form.values.username}
+							</p>
+						</div>
 
 						{form.values.lens_handle === null ? (
 							<Input.Wrapper label="Connect your Lens account">
 								<div className="mt-2">
-									<Button
-										color="dark"
-										radius={'md'}
-										leftIcon={
-											<img src="/assets/lens.svg" className="w-5 inline-block  text-gray-500" />
-										}
-									>
-										Sign in with Lens
-									</Button>
+									<ConnectButtonLink
+										onHandle={(handle) => {
+											form.setFieldValue('lens_handle', handle);
+										}}
+									/>
 								</div>
 							</Input.Wrapper>
 						) : (
@@ -92,6 +93,7 @@ const Register = ({ address }) => {
 						<div className="grid grid-cols-3">
 							<ImageUpload
 								label="Profile Image"
+								selectedFile={form.values.profile_image}
 								isDetailsHidden
 								onUploadFile={(file) => {
 									form.setFieldValue('profile_image', file);
@@ -99,7 +101,13 @@ const Register = ({ address }) => {
 							/>
 						</div>
 
-						<ImageUpload label="Cover Image" />
+						<ImageUpload
+							label="Cover Image"
+							selectedFile={form.values.cover_image}
+							onUploadFile={(file) => {
+								form.setFieldValue('cover_image', file);
+							}}
+						/>
 						<Button color="dark" radius={'md'}>
 							Create
 						</Button>

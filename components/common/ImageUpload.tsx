@@ -1,4 +1,4 @@
-import { Group, Input, Text } from '@mantine/core';
+import { Button, Group, Input, Text } from '@mantine/core';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { Cross1Icon, ImageIcon, UploadIcon } from '@radix-ui/react-icons';
 import { Web3StorageClient } from 'libs/WebStore';
@@ -20,7 +20,7 @@ const ImageUpload = (props) => {
 
 	async function storeFileUsingWebStorage() {
 		const rootCid = await Web3StorageClient.put([selectedFile]);
-		props.onUploadFile(rootCid);
+		if (props.onUploadFile) props.onUploadFile(rootCid);
 	}
 
 	useEffect(() => {
@@ -29,40 +29,62 @@ const ImageUpload = (props) => {
 		}
 	}, [selectedFile]);
 
-	return (
-		<Input.Wrapper label={label}>
-			<Dropzone
-				className="mt-2"
-				onDrop={(files) => changeHandler(files)}
-				onReject={(files) => console.log('rejected files', files)}
-				maxSize={3 * 1024 ** 2}
-				accept={IMAGE_MIME_TYPE}
-				{...props}
-			>
-				<Group position="center" spacing="xl" style={{ minHeight: 120, pointerEvents: 'none' }}>
-					<Dropzone.Accept>
-						<UploadIcon className="w-8 h-8" />
-					</Dropzone.Accept>
-					<Dropzone.Reject>
-						<Cross1Icon className="w-8 h-8" />
-					</Dropzone.Reject>
-					<Dropzone.Idle>
-						<ImageIcon className="w-8 h-8" />
-					</Dropzone.Idle>
+	console.log(selectedFile);
 
-					{!isDetailsHidden ? (
-						<div>
-							<Text size="xl" inline>
-								{label}
-							</Text>
-							<Text size="sm" color="dimmed" inline mt={7}>
-								Drag images here or click to select files
-							</Text>
-						</div>
-					) : null}
-				</Group>
-			</Dropzone>
-		</Input.Wrapper>
+	return (
+		<>
+			{props.selectedFile ? (
+				<div>
+					<img src={`https://w3s.link/ipfs/${props.selectedFile}/${selectedFile.name}`} />
+
+					<Button
+						compact
+						variant="subtle"
+						onClick={() => {
+							props.onUploadFile(null);
+						}}
+					>
+						Change Image
+					</Button>
+				</div>
+			) : (
+				<>
+					<Input.Wrapper label={label}>
+						<Dropzone
+							className="mt-2"
+							onDrop={(files) => changeHandler(files)}
+							onReject={(files) => console.log('rejected files', files)}
+							maxSize={3 * 1024 ** 2}
+							accept={IMAGE_MIME_TYPE}
+							{...props}
+						>
+							<Group position="center" spacing="xl" style={{ minHeight: 120, pointerEvents: 'none' }}>
+								<Dropzone.Accept>
+									<UploadIcon className="w-8 h-8" />
+								</Dropzone.Accept>
+								<Dropzone.Reject>
+									<Cross1Icon className="w-8 h-8" />
+								</Dropzone.Reject>
+								<Dropzone.Idle>
+									<ImageIcon className="w-8 h-8" />
+								</Dropzone.Idle>
+
+								{!isDetailsHidden ? (
+									<div>
+										<Text size="xl" inline>
+											{label}
+										</Text>
+										<Text size="sm" color="dimmed" inline mt={7}>
+											Drag images here or click to select files
+										</Text>
+									</div>
+								) : null}
+							</Group>
+						</Dropzone>
+					</Input.Wrapper>
+				</>
+			)}
+		</>
 	);
 };
 
