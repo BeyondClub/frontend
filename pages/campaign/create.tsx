@@ -1,4 +1,5 @@
 import { Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
+import { DateRangePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import Card from 'components/common/Card';
 import ImageUpload from 'components/common/ImageUpload';
@@ -8,11 +9,13 @@ export default function Register() {
 		initialValues: {
 			campaign_name: '',
 			cover_image: '',
-			campaign_type: '',
+			collectible_image: '',
+			campaign_type: 'lens_post',
 			collectible_price: '',
 			amount_of_collectibles: '',
-			experience: '',
+			experience: 'collectable',
 			target: 'everyone',
+			duration: [null, null],
 		},
 	});
 
@@ -30,11 +33,12 @@ export default function Register() {
 					>
 						<TextInput label="Campaign Name" {...form.getInputProps('campaign_name')} />
 
-						<div className="grid grid-cols-3">
-							<ImageUpload label="Digital Collectible image" isDetailsHidden />
-						</div>
-
-						<ImageUpload label="Cover Image" />
+						<ImageUpload
+							label="Cover Image"
+							onUploadFile={(file) => {
+								form.setFieldValue('cover_image', file);
+							}}
+						/>
 
 						<Input.Wrapper label="Campaign Type">
 							<div>
@@ -88,8 +92,27 @@ export default function Register() {
 							</div>
 						</Input.Wrapper>
 
-						{/* <DatePicker /> */}
-						{/* <DatePicker /> */}
+						<DateRangePicker
+							label="Duration"
+							placeholder=""
+							value={form.values.duration}
+							onChange={(val, val2) => form.setFieldValue('duration', [val, val2])}
+						/>
+
+						<div className="grid gap-5 md:grid-cols-2">
+							<TextInput label="Collectible Name" {...form.getInputProps('campaign_name')} />
+							<TextInput label="Collectible Symbol" {...form.getInputProps('campaign_name')} />
+						</div>
+
+						<div className="grid grid-cols-3">
+							<ImageUpload
+								label="Digital Collectible image"
+								isDetailsHidden
+								onUploadFile={(file) => {
+									form.setFieldValue('collectible_image', file);
+								}}
+							/>
+						</div>
 
 						<Button color="dark" radius={'md'}>
 							Create

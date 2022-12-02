@@ -39,7 +39,13 @@ export default function Register() {
 							</div>
 						</Input.Wrapper>
 						<div className="grid grid-cols-3">
-							<ImageUpload label="Profile Image" isDetailsHidden />
+							<ImageUpload
+								label="Profile Image"
+								isDetailsHidden
+								onUploadFile={(file) => {
+									form.setFieldValue('profile_image', file);
+								}}
+							/>
 						</div>
 
 						<ImageUpload label="Cover Image" />
