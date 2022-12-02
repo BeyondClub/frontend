@@ -20,7 +20,7 @@ const ImageUpload = (props) => {
 
 	async function storeFileUsingWebStorage() {
 		const rootCid = await Web3StorageClient.put([selectedFile]);
-		if (props.onUploadFile) props.onUploadFile(rootCid);
+		if (props.onUploadFile) props.onUploadFile(rootCid + '/' + selectedFile.name);
 	}
 
 	useEffect(() => {
@@ -35,7 +35,7 @@ const ImageUpload = (props) => {
 		<>
 			{props.selectedFile ? (
 				<div>
-					<img src={`https://w3s.link/ipfs/${props.selectedFile}/${selectedFile.name}`} />
+					<img src={`https://w3s.link/ipfs/${props.selectedFile}`} />
 
 					<Button
 						compact
