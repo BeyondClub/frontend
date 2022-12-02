@@ -1,5 +1,6 @@
 import { Button, Input, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import Layout from 'components/layout';
 import Card from '../components/common/Card';
 import ImageUpload from '../components/common/ImageUpload';
 
@@ -15,8 +16,8 @@ export default function Register() {
 	});
 
 	return (
-		<div className="bg-blue-50 min-h-screen">
-			<div className="mx-auto max-w-screen-md px-1 md:px-4 sm:px-6 relative py-10">
+		<Layout className="bg-blue-50 min-h-screen">
+			<div className="mx-auto max-w-screen-md px-1 md:px-4 sm:px-6 relative py-5">
 				<Card>
 					<h4 className="font-bold text-xl mb-5">Create an account</h4>
 
@@ -28,7 +29,7 @@ export default function Register() {
 					>
 						<TextInput label="Brand Name" {...form.getInputProps('brand_name')} />
 						<TextInput
-							label="Username (it will be your URL. ex: https://beyondclub.xyz/username)"
+							label="Username (it will be your URL. ex: https://beyondclub.xyz/u/username)"
 							{...form.getInputProps('username')}
 						/>
 						<Input.Wrapper label="Connect your Lens account">
@@ -55,6 +56,6 @@ export default function Register() {
 					</form>
 				</Card>
 			</div>
-		</div>
+		</Layout>
 	);
 }

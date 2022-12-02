@@ -5,7 +5,7 @@ import { Web3StorageClient } from 'libs/WebStore';
 import { useEffect, useState } from 'react';
 
 const ImageUpload = (props) => {
-	const { label } = props;
+	const { label, isDetailsHidden } = props;
 	const [selectedFile, setSelectedFile] = useState<any>();
 
 	const changeHandler = (files: any) => {
@@ -50,7 +50,7 @@ const ImageUpload = (props) => {
 						<ImageIcon className="w-8 h-8" />
 					</Dropzone.Idle>
 
-					{!props?.isDetailsHidden ? (
+					{!isDetailsHidden ? (
 						<div>
 							<Text size="xl" inline>
 								{label}
