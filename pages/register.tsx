@@ -20,10 +20,14 @@ export default function Register() {
 				<Card>
 					<h4 className="font-bold text-xl mb-5">Create an account</h4>
 
-					<form className="space-y-5">
+					<form
+						className="space-y-5"
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}
+					>
 						<TextInput label="Brand Name" />
 						<TextInput label="Username (it will be your URL. ex: https://beyondclub.xyz/username)" />
-
 						<Input.Wrapper label="Connect your Lens account">
 							<div className="mt-2">
 								<Button color="dark" radius={'md'}>
@@ -31,10 +35,11 @@ export default function Register() {
 								</Button>
 							</div>
 						</Input.Wrapper>
+						<div className="grid grid-cols-3">
+							<ImageUpload label="Profile Image" isDetailsHidden />
+						</div>
 
-						<ImageUpload label="Profile Image" />
 						<ImageUpload label="Cover Image" />
-
 						<Button color="dark" radius={'md'}>
 							Create
 						</Button>
