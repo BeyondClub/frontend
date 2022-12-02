@@ -1,7 +1,8 @@
 import Banner from '../../components/brandPage/Banner';
 import Cards from '../../components/brandPage/Cards';
 import Header from '../../components/brandPage/Header';
-const brandhomepage = () => {
+
+const Profile = () => {
 	return (
 		<div className="outer-bg">
 			<Header />
@@ -33,4 +34,4 @@ const brandhomepage = () => {
 	);
 };
 
-export default brandhomepage;
+export default Profile;

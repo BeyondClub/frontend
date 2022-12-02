@@ -1,5 +1,6 @@
 import { Button } from '@mantine/core';
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
+import { shortenAddress } from 'libs/helpers';
 
 const Layout = ({ children, className }) => {
 	const { connect, address, loading: eoaWalletLoading } = useWeb3AuthContext();
@@ -11,7 +12,9 @@ const Layout = ({ children, className }) => {
 					<b>BeyondClub</b>
 
 					{address ? (
-						<button className="nav-btn">Sign Up</button>
+						<button className="border px-4 py-2 text-sm bg-white rounded-md">
+							{shortenAddress(address)}
+						</button>
 					) : (
 						<Button color="dark" radius="md" onClick={connect} disabled={eoaWalletLoading}>
 							Login

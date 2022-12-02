@@ -39,3 +39,29 @@ export const GetPosts = gql`
     mimeType
   }
 `
+
+
+export const UserLensProfile = gql`
+  query UserLensProfile($request: ProfileQueryRequest!) {
+    profiles(request: $request){
+    items{
+      name
+      handle
+      picture {
+        ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        verified
+      }
+      ... on MediaSet {
+        original {
+          url
+          mimeType
+        	}
+      	}
+      }
+    }
+    }
+  }
+`
