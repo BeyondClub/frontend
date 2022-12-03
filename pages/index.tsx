@@ -3,6 +3,7 @@ import card1 from '../public/imgs/card1.png';
 import card2 from '../public/imgs/card2.png';
 
 import { ArrowRightIcon } from '@radix-ui/react-icons';
+import Meta from 'components/layout/Meta';
 import Link from 'next/link';
 import Navbar from '../components/brandComponents/Navbar';
 import './index.scss';
@@ -10,6 +11,7 @@ import './index.scss';
 export default function Home() {
 	return (
 		<div className="landing bg-gray-50 min-h-screen">
+			<Meta title="Home" />
 			<Navbar />
 			<div className="grid grid-cols-2 gap-5 place-items-center pl-10">
 				<div>

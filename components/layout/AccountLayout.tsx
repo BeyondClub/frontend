@@ -1,3 +1,5 @@
+import { GearIcon } from '@radix-ui/react-icons';
+
 import { Button } from '@mantine/core';
 import TransakWidget from 'components/biconomy/Transak';
 import Card from 'components/common/Card';
@@ -37,7 +39,12 @@ const AccountLayout = ({ children }) => {
 										incididunt ut labore et dolore magna aliqua.
 									</p>
 
-									<Button color="default" radius="lg" variant="default">
+									<Button
+										color="default"
+										radius="lg"
+										variant="default"
+										leftIcon={<GearIcon className="w-4 h-4 text-gray-500" />}
+									>
 										Edit profile
 									</Button>
 

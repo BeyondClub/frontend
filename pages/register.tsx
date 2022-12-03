@@ -1,6 +1,7 @@
 import { Button, Input, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Layout from 'components/layout';
+import Meta from 'components/layout/Meta';
 
 import ConnectButtonLink from 'components/LensVerification/LensSignIn';
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
@@ -52,6 +53,8 @@ const Register = ({ address }) => {
 
 	return (
 		<Layout className="bg-blue-50 min-h-screen">
+			<Meta title="Register" />
+
 			<div className="mx-auto max-w-screen-md px-1 md:px-4 sm:px-6 relative py-5">
 				<Card>
 					<h4 className="font-bold text-xl mb-5">Create an account</h4>

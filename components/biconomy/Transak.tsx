@@ -1,5 +1,6 @@
 import Transak from '@biconomy/transak';
 import { Button } from '@mantine/core';
+import { FileTextIcon } from '@radix-ui/react-icons';
 import { useWeb3AuthContext } from '../../context/SocialLoginContext';
 
 const TransakWidget = () => {
@@ -61,7 +62,13 @@ const TransakWidget = () => {
 
 	return (
 		<>
-			<Button color="default" radius="lg" variant="default" onClick={getDetails}>
+			<Button
+				color="default"
+				radius="lg"
+				variant="default"
+				onClick={getDetails}
+				leftIcon={<FileTextIcon className="w-4 h-4 text-gray-500" />}
+			>
 				Withdraw
 			</Button>
 		</>

@@ -1,17 +1,21 @@
 import { Button, Table } from '@mantine/core';
+import { PlusIcon } from '@radix-ui/react-icons';
 import Layout from 'components/layout';
 import AccountLayout from 'components/layout/AccountLayout';
+import Meta from 'components/layout/Meta';
 import Link from 'next/link';
 
 export default function Dashboard() {
 	return (
 		<Layout className="bg-blue-50 min-h-screen">
+			<Meta title="Dashboard" />
+
 			<AccountLayout>
 				<div className="flex justify-between my-5 p-5">
 					<h4 className="font-bold text-xl mb-5">Create a campaign</h4>
 
 					<Link passHref href="/campaign/create">
-						<Button color="dark" radius="lg">
+						<Button color="dark" radius="lg" leftIcon={<PlusIcon className="w-4 h-4 text-gray-100" />}>
 							Create a campaign
 						</Button>
 					</Link>
