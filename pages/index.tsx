@@ -1,7 +1,4 @@
 import Image from 'next/image';
-import card1 from '../public/imgs/card1.png';
-import card2 from '../public/imgs/card2.png';
-import card3 from '../public/imgs/card3.png';
 
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import Meta from 'components/layout/Meta';
@@ -30,7 +27,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="cards grid place-items-end ml-auto">
-					<Image src={card3} alt="" height={550} className="ml-auto" />
+					<Image src={'/imgs/card3.png'} alt="" height={550} width={550} className="ml-auto" />
 					{/* <Image src={card2} alt="" height={330} className="ml-auto" /> */}
 				</div>
 			</div>

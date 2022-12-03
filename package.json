@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@biconomy/mexa": "^3.0.5",
+    "@biconomy/smart-account": "^0.0.4",
     "@biconomy/transak": "^0.0.2",
     "@biconomy/web3-auth": "^0.0.2",
     "@bundlr-network/client": "^0.9.6",
