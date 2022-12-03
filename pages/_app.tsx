@@ -2,6 +2,7 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chains, wagmiClient } from 'libs/connectors';
 import { createClient, Provider } from 'urql';
 import { WagmiConfig } from 'wagmi';
+import { SmartAccountProvider } from '../context/SmartAccountContext';
 import { Web3AuthProvider } from '../context/SocialLoginContext';
 
 import { createEmotionCache, MantineProvider } from '@mantine/core';
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }) {
 				<WagmiConfig client={wagmiClient}>
 					<RainbowKitProvider chains={chains} modalSize="compact" appInfo={{ appName: 'Sendacoin.to' }}>
 						<Web3AuthProvider>
-							<Component {...pageProps} />
+							<SmartAccountProvider>
+								<Component {...pageProps} />
+							</SmartAccountProvider>
 						</Web3AuthProvider>
 					</RainbowKitProvider>
 				</WagmiConfig>

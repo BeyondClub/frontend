@@ -1,9 +1,12 @@
+import { LivepeerConfig } from '@livepeer/react';
 import { Anchor, Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
 import { DateRangePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import ImageUpload from 'components/common/ImageUpload';
 import Layout from 'components/layout';
 import AccountLayout from 'components/layout/AccountLayout';
+import { livePeerClient, livePeerTheme } from 'components/LivePeer/Player';
+import VideoFileUpload from 'components/LivePeer/VideoFileUpload';
 import dayjs from 'dayjs';
 
 const items = [
@@ -92,7 +95,13 @@ export default function Register() {
 							</div>
 						</Input.Wrapper>
 
-						{form.values.experience === 'video' ? <>SHOW VIDEO UPLOAD USING THELIVEPEER</> : null}
+						{form.values.experience === 'video' ? (
+							<>
+								<LivepeerConfig client={livePeerClient} theme={livePeerTheme}>
+									<VideoFileUpload />
+								</LivepeerConfig>
+							</>
+						) : null}
 
 						<Input.Wrapper label="Target">
 							<div>

@@ -1,10 +1,10 @@
 import { createReactClient, LivepeerConfig, studioProvider, ThemeConfig } from '@livepeer/react';
 
-const client = createReactClient({
-	provider: studioProvider({ apiKey: 'yourStudioApiKey' }),
+export const livePeerClient = createReactClient({
+	provider: studioProvider({ apiKey: process.env.LIVE_PEER_API }),
 });
 
-const livepeerTheme: ThemeConfig = {
+export const livePeerTheme: ThemeConfig = {
 	colors: {
 		accent: 'rgb(0, 145, 255)',
 		containerBorderColor: 'rgba(0, 145, 255, 0.9)',
@@ -25,7 +25,7 @@ export function Livepeer() {
 const VideoPlayer = () => {
 	return (
 		<>
-			<LivepeerConfig client={client} theme={livepeerTheme}>
+			<LivepeerConfig client={livePeerClient} theme={livePeerTheme}>
 				<Livepeer />
 			</LivepeerConfig>
 		</>

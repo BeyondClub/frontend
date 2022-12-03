@@ -1,3 +1,4 @@
+import SmartAccount from '@biconomy/smart-account';
 import { Button, Input, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Layout from 'components/layout';
@@ -5,14 +6,22 @@ import Meta from 'components/layout/Meta';
 
 import ConnectButtonLink from 'components/LensVerification/LensSignIn';
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
+import { ethers } from 'ethers';
 import { UserLensProfile } from 'graphql/queries';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
+import { ChainId } from 'utils/chainConfig';
 import Card from '../components/common/Card';
 import ImageUpload from '../components/common/ImageUpload';
 
 const RegiserWrapper = () => {
-	const { connect, address, loading: eoaWalletLoading } = useWeb3AuthContext();
+	const { provider, address } = useWeb3AuthContext();
+
+	if (!provider) {
+		return 'Login expired.';
+	}
+
+	const walletProvider = new ethers.providers.Web3Provider(provider);
 
 	if (address) {
 		return <Register address={address} />;
@@ -21,6 +30,7 @@ const RegiserWrapper = () => {
 };
 
 const Register = ({ address }) => {
+	const { provider } = useWeb3AuthContext();
 	const [ethAddress, setAddress] = useState(address);
 
 	const [result] = useQuery({
@@ -43,6 +53,11 @@ const Register = ({ address }) => {
 	});
 
 	useEffect(() => {
+		async function run() {}
+		run();
+	}, []);
+
+	useEffect(() => {
 		if (result && result.data && result.data.profiles.items) {
 			if (result.data.profiles.items[0]) {
 				const profile = result.data.profiles.items[0];
@@ -50,6 +65,24 @@ const Register = ({ address }) => {
 			}
 		}
 	}, [result]);
+
+	const handleRegisteration = async () => {
+		const walletProvider = new ethers.providers.Web3Provider(provider);
+		//![BUG] move to config
+		let options = {
+			activeNetworkId: ChainId.GOERLI,
+			supportedNetworksIds: [ChainId.GOERLI, ChainId.POLYGON_MAINNET, ChainId.POLYGON_MUMBAI],
+		};
+		let smartAccount = new SmartAccount(walletProvider, options);
+		smartAccount = await smartAccount.init();
+		const tx = {
+			to: '0x150FC8208cb728d0b080388441bdB750d752542A', // our smart contract
+			data: '0x0a5936f1', // function signature
+			value: '0x0', // empty value
+		};
+		const txResponse = await smartAccount.sendGasLessTransaction({ transaction: tx });
+		console.log(txResponse);
+	};
 
 	return (
 		<Layout className="bg-blue-50 min-h-screen">
@@ -111,7 +144,7 @@ const Register = ({ address }) => {
 								form.setFieldValue('cover_image', file);
 							}}
 						/>
-						<Button color="dark" radius={'md'}>
+						<Button onClick={handleRegisteration} color="dark" radius={'md'}>
 							Create
 						</Button>
 					</form>
