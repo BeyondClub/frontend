@@ -1,3 +1,4 @@
+import Link from 'next/link';
 const Cards = (props) => {
 	return (
 		<div className="card-outer">
@@ -58,7 +59,10 @@ const Cards = (props) => {
 					</div>
 				</div>
 				<div className="card-btn">
-					<button className="card-btn-txt">View</button>
+					<button className="card-btn-txt">
+                    <Link href={`/u/campaign/${props.title}`}>View</Link>
+                        
+                        </button>
 				</div>
 			</div>
 		</div>

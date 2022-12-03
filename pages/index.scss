@@ -16,29 +16,7 @@
       border: 2px solid black;
       border-radius: 10px;
     }
-  }
-  .mainContainer {
-    display: flex;
-    position: relative;
-    p {
-      width: 790px;
-      height: 300px;
-
-      font-family: "Neue Montreal";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 78px;
-      line-height: 75px;
-      margin-left: 81px;
-      margin-top: 87px;
-      /* or 96% */
-
-      display: flex;
-      align-items: center;
-      letter-spacing: -0.02em;
-
-      color: #000000;
-    }
+  
     .cards {
       position: absolute;
       margin-left: 784px;
