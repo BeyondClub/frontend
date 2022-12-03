@@ -12,7 +12,7 @@ const Layout = ({ children, className }) => {
 		<section className={className}>
 			<header className="mx-auto max-w-screen-xl px-1 md:px-4 sm:px-6 relative py-5">
 				<div className="flex justify-between">
-					<Link href="/" passHref className="cursor-pointer">
+					<Link href="/dashboard" passHref className="cursor-pointer">
 						<Image src={logo} alt="" width={200} height={300} />
 					</Link>
 
