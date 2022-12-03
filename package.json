@@ -37,11 +37,13 @@
     "react-hot-toast": "^2.4.0",
     "react-qr-code": "^2.0.8",
     "react-qr-reader": "^3.0.0-beta-1",
+    "sass": "^1.56.1",
     "urql": "^3.0.3",
     "wagmi": "^0.8.9",
     "web3.storage": "^4.4.0"
   },
   "devDependencies": {
+    "@types/react": "18.0.26",
     "autoprefixer": "^10.4.13",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
