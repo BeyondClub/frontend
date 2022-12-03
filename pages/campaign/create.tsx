@@ -1,3 +1,4 @@
+import SmartAccount from '@biconomy/smart-account';
 import { LivepeerConfig } from '@livepeer/react';
 import { Anchor, Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
 import { DateRangePicker } from '@mantine/dates';
@@ -7,7 +8,13 @@ import Layout from 'components/layout';
 import AccountLayout from 'components/layout/AccountLayout';
 import { livePeerClient, livePeerTheme } from 'components/LivePeer/Player';
 import VideoFileUpload from 'components/LivePeer/VideoFileUpload';
+import { useWeb3AuthContext } from 'context/SocialLoginContext';
 import dayjs from 'dayjs';
+import { ethers } from 'ethers';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { ChainId } from 'utils/chainConfig';
+import { CONTRACT_ABI } from '../../constants';
 
 const items = [
 	{ title: 'Dashboard', href: '/dashboard' },
@@ -19,11 +26,17 @@ const items = [
 ));
 
 export default function Register() {
+	const router = useRouter();
+	const [loading, setLoading] = useState(false);
+	const { provider, address } = useWeb3AuthContext();
+
 	const form = useForm({
 		initialValues: {
 			campaign_name: '',
 			cover_image: '',
 			collectible_image: '',
+			collectible_name: '',
+			collectible_symbol: '',
 			campaign_type: 'lens_post',
 			collectible_price: '',
 			amount_of_collectibles: '',
@@ -32,6 +45,63 @@ export default function Register() {
 			duration: [new Date(dayjs().startOf('month').toDate()), new Date(dayjs().endOf('month').toDate())],
 		},
 	});
+
+	const handleSubmission = async () => {
+		setLoading(true);
+		const walletProvider = new ethers.providers.Web3Provider(provider);
+		console.log(walletProvider);
+
+		//![BUG] move to config
+		let options = {
+			activeNetworkId: ChainId.POLYGON_MUMBAI,
+			supportedNetworksIds: [ChainId.GOERLI, ChainId.POLYGON_MAINNET, ChainId.POLYGON_MUMBAI],
+			networkConfig: [
+				{
+					chainId: ChainId.POLYGON_MUMBAI,
+					dappAPIKey: '59fRCMXvk.8a1652f0-b522-4ea7-b296-98628499aee3',
+				},
+			],
+		};
+		let smartAccount = new SmartAccount(walletProvider, options);
+		console.log(smartAccount);
+		smartAccount = await smartAccount.init();
+		// const clubContract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, walletProvider);
+		const clubContract = new ethers.utils.Interface(CONTRACT_ABI);
+		// const newBrand = await clubContract.createBrand()
+		console.log(clubContract);
+
+		// const tx = {
+		// 	to: CONTRACT_ADDRESS,
+		// 	data: createBrandData,
+		// };
+		// const txResponse = await smartAccount.sendGasLessTransaction({ transaction: tx });
+		// console.log(txResponse);
+		// const tx1 = {
+		// 	to: CONTRACT_ADDRESS,
+		// 	data: check,
+		// };
+		// const txResponse1 = await smartAccount.sendGasLessTransaction({ transaction: tx1 });
+
+		// console.log(tx1);
+		router.push('/dashboard');
+		setLoading(false);
+	};
+
+	const deployNFTContract = async () => {
+		const result = await fetch(
+			`/api/service/deply_nft_contract?name=${form.values.collectible_name}&symbol=${form.values.collectible_symbol}&owner_address=${address}&metadata_updatable=false`,
+			{
+				method: 'GET',
+				credentials: 'include',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+
+		const response = result.json();
+	};
 
 	return (
 		<Layout className="bg-blue-50 min-h-screen">
@@ -45,6 +115,16 @@ export default function Register() {
 						className="space-y-5"
 						onSubmit={(e) => {
 							e.preventDefault();
+							deployNFTContract();
+							handleSubmission();
+							try {
+								fetch('/api/service/create_campaign', {
+									method: 'POST',
+									body: JSON.stringify(form.values),
+								});
+							} catch (e) {
+								console.log(e);
+							}
 						}}
 					>
 						<TextInput label="Campaign Name" {...form.getInputProps('campaign_name')} />
@@ -127,7 +207,7 @@ export default function Register() {
 
 						<div className="grid gap-5 md:grid-cols-2">
 							<TextInput label="Collectible Name" {...form.getInputProps('campaign_name')} />
-							<TextInput label="Collectible Symbol" {...form.getInputProps('campaign_name')} />
+							<TextInput label="Collectible Symbol" {...form.getInputProps('campaign_symbol')} />
 						</div>
 
 						<div className="grid grid-cols-3">

@@ -1,15 +1,26 @@
+import '@biconomy/web3-auth/dist/src/style.css';
 import Image from 'next/image';
-import card1 from '../public/imgs/card1.png';
-import card2 from '../public/imgs/card2.png';
 import card3 from '../public/imgs/card3.png';
 
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import Meta from 'components/layout/Meta';
+import { useWeb3AuthContext } from 'context/SocialLoginContext';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import Navbar from '../components/brandComponents/Navbar';
 import './index.scss';
 
 export default function Home() {
+	const { connect, address, loading: eoaWalletLoading } = useWeb3AuthContext();
+	const router = useRouter();
+
+	useEffect(() => {
+		if (address) {
+			// router.push('/dashboard');
+		}
+	}, [address]);
+
 	return (
 		<div className="landing bg-gray-50 min-h-screen">
 			<Meta title="Home" />
@@ -20,12 +31,14 @@ export default function Home() {
 						Supercharge your customer engagement with No-code NFT loyalty program.
 					</h2>
 					<div>
-						<Link
-							className="bg-gray-900 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
-							href="/register"
-							passHref
-						>
-							Get Started <ArrowRightIcon className="ml-5" />
+						<Link href="/register" as="/register">
+							<button
+								onClick={connect}
+								disabled={eoaWalletLoading}
+								className="bg-gray-900 cursor-pointer hover:bg-gray-800 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
+							>
+								Get Started <ArrowRightIcon className="ml-5" />
+							</button>
 						</Link>
 					</div>
 				</div>

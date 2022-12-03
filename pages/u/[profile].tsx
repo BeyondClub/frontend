@@ -8,7 +8,7 @@ const Profile = () => {
 		<CustomerLayout>
 			<Meta title="Profile" />
 
-			<Banner />
+			<Banner img="/assets/banner-2.png" />
 			<section className="mx-auto max-w-screen-xl px-1 md:px-4 sm:px-6 relative py-10">
 				<h2 className="brand-hp-txt">Availabe Campaigns for you</h2>
 				<div className="cards-cont">

@@ -5,6 +5,7 @@ import { Web3StorageClient } from 'libs/WebStore';
 import { useEffect, useState } from 'react';
 
 const ImageUpload = (props) => {
+	const [status, setStatus] = useState(null);
 	const { label, isDetailsHidden } = props;
 	const [selectedFile, setSelectedFile] = useState<any>();
 
@@ -19,8 +20,10 @@ const ImageUpload = (props) => {
 	};
 
 	async function storeFileUsingWebStorage() {
+		setStatus('uploading');
 		const rootCid = await Web3StorageClient.put([selectedFile]);
 		if (props.onUploadFile) props.onUploadFile(rootCid + '/' + selectedFile.name);
+		setStatus('uploaded');
 	}
 
 	useEffect(() => {
@@ -35,13 +38,14 @@ const ImageUpload = (props) => {
 		<>
 			{props.selectedFile ? (
 				<div>
-					<img src={`https://w3s.link/ipfs/${props.selectedFile}`} />
+					<img src={`https://w3s.link/ipfs/${props.selectedFile}`} className="rounded mb-2" />
 
 					<Button
 						compact
 						variant="subtle"
 						onClick={() => {
 							props.onUploadFile(null);
+							setStatus(null);
 						}}
 					>
 						Change Image

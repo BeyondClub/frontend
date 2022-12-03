@@ -17,9 +17,14 @@ const Layout = ({ children, className }) => {
 					</Link>
 
 					{address ? (
-						<button className="border px-4 py-2 text-sm bg-white rounded-md">
-							{shortenAddress(address)}
-						</button>
+						<div className="flex items-center space-x-5">
+							<Link href="/dashboard" passHref>
+								Dashboard
+							</Link>
+							<button className="border px-4 py-2 text-sm bg-white rounded-md">
+								{shortenAddress(address)}
+							</button>
+						</div>
 					) : (
 						<Button color="dark" radius="md" onClick={connect} disabled={eoaWalletLoading}>
 							Login

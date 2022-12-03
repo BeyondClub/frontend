@@ -1,3 +1,4 @@
+import { NavigationProgress } from '@mantine/nprogress';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chains, wagmiClient } from 'libs/connectors';
 import { createClient, Provider } from 'urql';
@@ -9,6 +10,7 @@ import { createEmotionCache, MantineProvider } from '@mantine/core';
 import { Toaster } from 'react-hot-toast';
 
 import '@rainbow-me/rainbowkit/styles.css';
+import { RouterTransition } from 'components/common/RouterTransition';
 import '../styles/globals.css';
 
 const myCache = createEmotionCache({ key: 'beyondclub' });
@@ -20,6 +22,8 @@ const client = createClient({
 function MyApp({ Component, pageProps }) {
 	return (
 		<Provider value={client}>
+			<NavigationProgress color={'#000'} />
+			<RouterTransition />
 			<MantineProvider withGlobalStyles withNormalizeCSS emotionCache={myCache}>
 				<WagmiConfig client={wagmiClient}>
 					<RainbowKitProvider chains={chains} modalSize="compact" appInfo={{ appName: 'Sendacoin.to' }}>

@@ -1,4 +1,9 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 const Cards = (props) => {
+	const router = useRouter();
+
 	return (
 		<div className="card-outer">
 			<div className="card-img">
@@ -58,7 +63,9 @@ const Cards = (props) => {
 					</div>
 				</div>
 				<div className="card-btn">
-					<button className="card-btn-txt">View</button>
+					<Link href={'/brand/' + router.query.profile + '/ID'} passHref>
+						<button className="card-btn-txt">View</button>
+					</Link>
 				</div>
 			</div>
 		</div>

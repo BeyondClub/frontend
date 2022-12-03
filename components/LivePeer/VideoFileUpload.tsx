@@ -1,5 +1,6 @@
 import { useCreateAsset } from '@livepeer/react';
-import { FileInput, Input } from '@mantine/core';
+import { Button, FileInput } from '@mantine/core';
+
 import { useState } from 'react';
 
 const VideoFileUpload = (props) => {
@@ -19,7 +20,7 @@ const VideoFileUpload = (props) => {
 	);
 
 	return (
-		<Input.Wrapper label={'Video File'}>
+		<>
 			<FileInput
 				label="Video File"
 				withAsterisk
@@ -31,14 +32,15 @@ const VideoFileUpload = (props) => {
 				accept="video/*"
 			/>
 
-			<button
+			<Button
+				className="mt-2"
 				disabled={status === 'loading' || !createAsset}
 				onClick={() => {
 					createAsset?.();
 				}}
 			>
-				Create Asset
-			</button>
+				Upload Video Asset
+			</Button>
 			{assets?.map((asset) => (
 				<div key={asset.id}>
 					<div>
@@ -50,7 +52,7 @@ const VideoFileUpload = (props) => {
 			))}
 
 			{error && <div>{error.message}</div>}
-		</Input.Wrapper>
+		</>
 	);
 };
 
