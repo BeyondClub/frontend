@@ -181,11 +181,9 @@ a {
   transform: rotate(-28.94deg);
 }
 .landing{
-  overflow: hidden !important;
-  width: 100%;
-  height: 100%;
-}
-.modify{
-  z-index: 5;
+
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
