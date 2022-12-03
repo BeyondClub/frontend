@@ -14,7 +14,6 @@ const items = [
 		{item.title}
 	</Anchor>
 ));
-
 export default function Register() {
 	const form = useForm({
 		initialValues: {
