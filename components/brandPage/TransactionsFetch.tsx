@@ -1,5 +1,6 @@
 import { Modal,Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import TransactionHistoryBlock from './TransactionHistoryBlock';
 function TransactionModal(props) {
     const [loading, setLoading] = useState(false);
     const [txnData, setTxnData] = useState();
@@ -27,7 +28,11 @@ function TransactionModal(props) {
         <div className='text-center'>
         <h2 className='font-[650] text-3xl border-b-2 my-1 py-2 border-grey-100'>Transaction History</h2>
         </div>
-    {loading? <div className='flex w-full justify-center'><Loader className='my-10'/></div>: <div> {txnData}</div>}
+    {loading? <div className='flex w-full justify-center'><Loader className='my-10'/></div>: 
+    <div> 
+        <TransactionHistoryBlock to='0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb4' at='2022-12-03T18:47:12Z' height='16106165' />
+        <TransactionHistoryBlock to='0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb4' at='2022-12-03T18:47:12Z' height='16106165' />
+    </div>}
     </Modal>
   );
 }
