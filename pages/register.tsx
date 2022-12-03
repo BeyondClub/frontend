@@ -3,7 +3,7 @@ import { Button, Input, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Layout from 'components/layout';
 import Meta from 'components/layout/Meta';
-
+import {Contract} from 'ethers';
 import ConnectButtonLink from 'components/LensVerification/LensSignIn';
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
 import { ethers } from 'ethers';
@@ -13,6 +13,7 @@ import { useQuery } from 'urql';
 import { ChainId } from 'utils/chainConfig';
 import Card from '../components/common/Card';
 import ImageUpload from '../components/common/ImageUpload';
+import {CONTRACT_ADDRESS, CONTRACT_ABI} from '../constants';
 
 const RegiserWrapper = () => {
 	const { provider, address } = useWeb3AuthContext();
@@ -75,9 +76,16 @@ const Register = ({ address }) => {
 		};
 		let smartAccount = new SmartAccount(walletProvider, options);
 		smartAccount = await smartAccount.init();
+		const clubContract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, walletProvider);
+		// const newBrand = await clubContract.createBrand()
+		
+		// add username here
+		const createBrandData = clubContract.interface.encodeFunctionData('createBrand', [""]);
+		
+		
 		const tx = {
-			to: '0x150FC8208cb728d0b080388441bdB750d752542A', // our smart contract
-			data: '0x0a5936f1', // function signature
+			to: CONTRACT_ADDRESS, // our smart contract
+			data: createBrandData,
 			value: '0x0', // empty value
 		};
 		const txResponse = await smartAccount.sendGasLessTransaction({ transaction: tx });
