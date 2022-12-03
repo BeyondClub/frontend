@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import card1 from '../public/imgs/card1.png';
 import card2 from '../public/imgs/card2.png';
+import card3 from '../public/imgs/card3.png';
 
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import Meta from 'components/layout/Meta';
@@ -15,12 +16,12 @@ export default function Home() {
 			<Navbar />
 			<div className="grid grid-cols-2 gap-5 place-items-center pl-10">
 				<div>
-					<h2 className="text-6xl font-bold leading-40">
+					<h2 className="text-7xl font-medium leading-40">
 						Supercharge your customer engagement with No-code NFT loyalty program.
 					</h2>
 					<div>
 						<Link
-							className="bg-gray-900 px-6 rounded-md text-white mt-10 w-max py-4 flex items-center"
+							className="bg-gray-900 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
 							href="/register"
 							passHref
 						>
@@ -29,8 +30,8 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="cards grid place-items-end ml-auto">
-					<Image src={card1} alt="" height={330} className="ml-auto" />
-					<Image src={card2} alt="" height={330} className="ml-auto" />
+					<Image src={card3} alt="" height={550} className="ml-auto" />
+					{/* <Image src={card2} alt="" height={330} className="ml-auto" /> */}
 				</div>
 			</div>
 		</div>
