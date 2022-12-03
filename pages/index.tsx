@@ -27,7 +27,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="cards grid place-items-end ml-auto">
-					<Image src={'/assets/card3.png'} alt="" height={550} width={550} className="ml-auto" />
+					<Image src={'/assets/Card3.png'} alt="" height={550} width={550} className="ml-auto" />
 					{/* <Image src={card2} alt="" height={330} className="ml-auto" /> */}
 				</div>
 			</div>
