@@ -168,4 +168,24 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
 }
+.landing-bg-blur{
+  z-index: 1;
+  position: absolute;
+  width: 1291px;
+  height: 1070px;
+  left: -600px;
+  top: 50px;
+  background: linear-gradient(245.7deg, #F1B9F9 22.92%, #A0E1FA 45.94%, #D3F8DB 85.03%);
+  opacity: 0.5;
+  filter: blur(150px);
+  transform: rotate(-28.94deg);
+}
+.landing{
+  overflow: hidden !important;
+  width: 100%;
+  height: 100%;
+}
+.modify{
+  z-index: 5;
+}
 

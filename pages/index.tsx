@@ -11,17 +11,17 @@ import './index.scss';
 
 export default function Home() {
 	return (
-		<div className="landing bg-gray-50 min-h-screen">
+		<div className="landing bg-gray-50">
 			<Meta title="Home" />
-			<Navbar />
-			<div className="grid grid-cols-2 gap-5 place-items-center pl-10">
-				<div>
-					<h2 className="text-7xl font-medium leading-40">
+			<Navbar/>
+			<div className="modify grid grid-cols-2 gap-5 place-items-center pl-10">
+				<div className='z-50'>
+					<h2 className="z-50 text-6xl font-medium leading-40">
 						Supercharge your customer engagement with No-code NFT loyalty program.
 					</h2>
 					<div>
 						<Link
-							className="bg-gray-900 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
+							className=" bg-gray-900 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
 							href="/register"
 							passHref
 						>
@@ -34,6 +34,7 @@ export default function Home() {
 					{/* <Image src={card2} alt="" height={330} className="ml-auto" /> */}
 				</div>
 			</div>
+		<div className='landing-bg-blur'></div>
 		</div>
 	);
 }
