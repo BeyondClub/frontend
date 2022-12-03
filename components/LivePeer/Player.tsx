@@ -6,7 +6,7 @@ import {
 } from "@livepeer/react";
 
 const client = createReactClient({
-  provider: studioProvider({ apiKey: "yourStudioApiKey" }),
+  provider: studioProvider({ apiKey: "4b6bf587-0495-46e7-90e9-80e4aa0494dd" }),
 });
 
 const livepeerTheme: ThemeConfig = {
@@ -21,8 +21,8 @@ const livepeerTheme: ThemeConfig = {
 
 import { Player } from "@livepeer/react";
 
-const playbackId =
-  "bafybeigtqixg4ywcem3p6sitz55wy6xvnr565s6kuwhznpwjices3mmxoe";
+const playbackId = "666899k9r9t36tnh";
+  
 
 export function Livepeer() {
   return (

@@ -18,7 +18,7 @@ function Demo(props) {
         {/* w-80% bg-black" */}
         <div className="">
           <p className="text-black font-Helvetica text-xl font-bold  p-1 m-2">
-            You have an access for the special video!
+            You have an access for the special Livepeer video!
           </p>
         </div>
         <div className="">
