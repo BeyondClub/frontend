@@ -1,5 +1,13 @@
 import React from "react";
+import TicketModal from './TicketModal'
+import { Modal } from '@mantine/core';
 const CampaignDetails = (props) => {
+
+    const [handleTicketModal,setHandleTicketModal] = React.useState(false);
+    const openModal = () => {
+        setHandleTicketModal(true);
+        console.log(handleTicketModal);
+    }
     return (
         <div className="flex flex-col basis-1/4  justify-items-start px-9">
             <h2 className="text-xl font-bold my-0.5">{props.title}</h2>
@@ -21,7 +29,12 @@ const CampaignDetails = (props) => {
                 </div>
             </div>
             {/* <Notification/> */}
-            <button className='bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/3 my-3'>Redeem Now</button>
+            <button className='bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/3 my-3' onClick={openModal}>Redeem Now</button>
+            {/* <Modal opened={handleTicketModal}
+             onClose={() => setHandleTicketModal(false)}>
+      Modal without header, press escape or click on overlay to close
+    </Modal> */}
+            <TicketModal handleTicketModal={handleTicketModal} setHandleTicketModal={setHandleTicketModal}/>
         </div>
     );
 }
