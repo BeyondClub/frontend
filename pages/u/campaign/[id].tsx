@@ -7,7 +7,7 @@ const Campaign = () => {
         <div>
             <Header/>
             <Banner img='/assets/banner-2.png'/>
-            <div className='flex flex-row '>
+            <div className='flex flex-row my-20 px-10'>
                 <div className='flex basis-3/4 justify-center'>
                     <img className='rounded-md' src='/assets/card-bg-3.png' alt='campagin-img'/>
                 </div>
