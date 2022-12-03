@@ -35,10 +35,6 @@ a {
 .navbar-links-logo {
   z-index: 2;
 }
-
-.navbar-links-logo img {
-  /* width: 90%; */
-}
 .navbar-links-container {
   display: flex;
   flex-direction: row;
