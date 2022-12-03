@@ -1,10 +1,13 @@
 import CustomerLayout from 'components/layout/CustomerLayout';
+import Meta from 'components/layout/Meta';
 import Banner from '../../components/brandPage/Banner';
 import Cards from '../../components/brandPage/Cards';
 
 const Profile = () => {
 	return (
 		<CustomerLayout>
+			<Meta title="Profile" />
+
 			<Banner />
 			<section className="mx-auto max-w-screen-xl px-1 md:px-4 sm:px-6 relative py-10">
 				<h2 className="brand-hp-txt">Availabe Campaigns for you</h2>

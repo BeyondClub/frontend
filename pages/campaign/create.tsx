@@ -1,4 +1,4 @@
-import { Anchor, Breadcrumbs, Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
+import { Anchor, Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
 import { DateRangePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import ImageUpload from 'components/common/ImageUpload';
@@ -36,7 +36,7 @@ export default function Register() {
 				<div className="p-10">
 					<div className="mb-5">
 						<h4 className="font-bold text-xl mb-2">Create a campaign</h4>
-						<Breadcrumbs separator="→">{items}</Breadcrumbs>
+						{/* <Breadcrumbs separator="→">{items}</Breadcrumbs> */}
 					</div>
 					<form
 						className="space-y-5"
