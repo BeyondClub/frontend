@@ -8,12 +8,12 @@ const Profile = () => {
 		<CustomerLayout>
 			<Meta title="Profile" />
 
-			<Banner />
+			<Banner img='/assets/banner.png'/>
 			<section className="mx-auto max-w-screen-xl px-1 md:px-4 sm:px-6 relative py-10">
 				<h2 className="brand-hp-txt">Availabe Campaigns for you</h2>
 				<div className="cards-cont">
 				<Cards 
-				img='assets/card-bg-1.png'
+				img='/assets/card-bg-1.png'
 				title='Christmas Gift' 
 				line1='Buy with $10 USD' 
 				line2='Get the access of special Christmas event'
@@ -21,7 +21,7 @@ const Profile = () => {
 				redeemed=' 150' 
 				total='300'/>
                 <Cards 
-				img='assets/card-bg-2.png'
+				img='/assets/card-bg-2.png'
 				title='Autumn Gift'
 				line1='Buy with $10 USD' 
 				line2='Get the access of special Christmas event' 
@@ -29,7 +29,7 @@ const Profile = () => {
 				redeemed=' 150' 
 				total='300'/>
                 <Cards 
-				img='assets/card-bg-3.png' 
+				img='/assets/card-bg-3.png' 
 				title='Halloween Gift' 
 				line1='Buy with $10 USD' 
 				line2='Get the access of special Christmas event' 
@@ -50,12 +50,12 @@ const Profile = () => {
 				<h2 className="brand-hp-txt">My Collectables</h2>
 				<div className="cards-cont">
 				<Cards 
-				img='assets/card-bg-1.png' 
+				img='/assets/card-bg-1.png' 
 				title='Christmas Gift' 
 				line1='Buy with $10 USD' 
 				line2='Get the access of special Christmas event'/>
                 <Cards 
-				img='assets/card-bg-2.png' 
+				img='/assets/card-bg-2.png' 
 				title='Halloween Gift' 
 				line1='Buy with $10 USD' />
 				</div>
