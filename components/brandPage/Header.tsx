@@ -11,7 +11,7 @@ const Header = () => {
     <div className="navbar h-16 m-1">
       <div className="navbar-links">
         <div className="navbar-links-logo">
-        <Image className='z-50' src={logo} alt="header-logo" width={70} height={90} />
+        <Image className='z-50 p-1' src={logo} alt="header-logo" width={70} height={70} />
           {/* <img src="/assets/starbucks-logo.png" alt="header-logo" /> */}
         </div>
         <div className="navbar-links-container space-x-5">
