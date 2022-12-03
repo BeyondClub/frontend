@@ -1,10 +1,19 @@
-import { Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
+import { Anchor, Breadcrumbs, Button, Input, NumberInput, SegmentedControl, TextInput } from '@mantine/core';
 import { DateRangePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
-import Card from 'components/common/Card';
 import ImageUpload from 'components/common/ImageUpload';
 import Layout from 'components/layout';
+import AccountLayout from 'components/layout/AccountLayout';
 import dayjs from 'dayjs';
+
+const items = [
+	{ title: 'Dashboard', href: '/dashboard' },
+	{ title: 'New Campaign', href: '#' },
+].map((item, index) => (
+	<Anchor href={item.href} key={index}>
+		{item.title}
+	</Anchor>
+));
 
 export default function Register() {
 	const form = useForm({
@@ -23,10 +32,12 @@ export default function Register() {
 
 	return (
 		<Layout className="bg-blue-50 min-h-screen">
-			<div className="mx-auto max-w-screen-md px-1 md:px-4 sm:px-6 relative py-10">
-				<Card>
-					<h4 className="font-bold text-xl mb-5">Create a campaign</h4>
-
+			<AccountLayout>
+				<div className="p-10">
+					<div className="mb-5">
+						<h4 className="font-bold text-xl mb-2">Create a campaign</h4>
+						<Breadcrumbs separator="→">{items}</Breadcrumbs>
+					</div>
 					<form
 						className="space-y-5"
 						onSubmit={(e) => {
@@ -125,8 +136,8 @@ export default function Register() {
 							Create
 						</Button>
 					</form>
-				</Card>
-			</div>
+				</div>
+			</AccountLayout>
 		</Layout>
 	);
 }

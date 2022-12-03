@@ -1,34 +1,36 @@
-import Image from "next/image";
-import card1 from "../public/imgs/card1.png";
-import card2 from "../public/imgs/card2.png";
+import Image from 'next/image';
+import card1 from '../public/imgs/card1.png';
+import card2 from '../public/imgs/card2.png';
 
-import "./index.scss";
-import Navbar from "../components/brandComponents/Navbar";
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
+import Navbar from '../components/brandComponents/Navbar';
+import './index.scss';
 
 export default function Home() {
-  return (
-    <div className="landing">
-      <Navbar />
-      <div className="mainContainer">
-        <p>
-          Supercharge your customer engagement with No-code NFT loyalty program.
-        </p>
-        <div className="cards">
-          <Image
-            src={card1}
-            alt="Picture of the author"
-            width={200}
-            height={300}
-          />
-          <Image
-            src={card2}
-            alt="Picture of the author"
-            width={200}
-            height={300}
-          />
-        </div>
-        <button className="btn2">Get Started</button>
-      </div>
-    </div>
-  );
+	return (
+		<div className="landing bg-gray-50 min-h-screen">
+			<Navbar />
+			<div className="grid grid-cols-2 gap-5 place-items-center pl-10">
+				<div>
+					<h2 className="text-6xl font-bold leading-40">
+						Supercharge your customer engagement with No-code NFT loyalty program.
+					</h2>
+					<div>
+						<Link
+							className="bg-gray-900 px-6 rounded-md text-white mt-10 w-max py-4 flex items-center"
+							href="/register"
+							passHref
+						>
+							Get Started <ArrowRightIcon className="ml-5" />
+						</Link>
+					</div>
+				</div>
+				<div className="cards grid place-items-end ml-auto">
+					<Image src={card1} alt="" height={330} className="ml-auto" />
+					<Image src={card2} alt="" height={330} className="ml-auto" />
+				</div>
+			</div>
+		</div>
+	);
 }
