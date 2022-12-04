@@ -6,9 +6,14 @@ import { Modal } from '@mantine/core';
 const CampaignDetails = (props) => {
 
     const [handleTicketModal,setHandleTicketModal] = React.useState(false);
+    const [handleVideoModal,setHandleVideoModal] = React.useState(false);
     const openModal = () => {
         setHandleTicketModal(true);
-        console.log(handleTicketModal);
+        // console.log(handleTicketModal);
+    }
+    const openVideoModal = () => {
+        setHandleVideoModal(true);
+        // console.log(handleTicketModal);
     }
     return (
       <div className="flex flex-col basis-1/4  justify-items-start px-9">
@@ -49,12 +54,18 @@ const CampaignDetails = (props) => {
               />
         </div>
         {/* <Notification/> */}
+        <div className='flex flex-row my-5'>
         <button
-          className="bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/3 my-3 py-3"
-          onClick={openModal}
-        >
-          Redeem Now
+          className="bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/4 my-3 py-2 mx-auto hover:-translate-y-1"
+          onClick={openModal}>
+          Redeem Ticket
         </button>
+        <button
+          className="bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/4 my-3 py-3 mx-auto ml-1 hover:-translate-y-1"
+          onClick={openVideoModal}>
+          Redeem Video
+        </button>
+        </div>
         {/* <Modal opened={handleTicketModal}
              onClose={() => setHandleTicketModal(false)}>
       Modal without header, press escape or click on overlay to close
@@ -65,10 +76,10 @@ const CampaignDetails = (props) => {
           setHandleTicketModal={setHandleTicketModal}
         />
 
-        {/* <VideoModal
-          handleTicketModal={handleTicketModal}
-          setHandleTicketModal={setHandleTicketModal}
-        /> */}
+        <VideoModal
+          handleTicketModal={handleVideoModal}
+          setHandleTicketModal={setHandleVideoModal}
+        />
       </div>
     );
 }
