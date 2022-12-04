@@ -4,7 +4,7 @@ import TransactionHistoryBlock from './TransactionHistoryBlock';
 function TransactionModal(props) {
     // var data;
     const [loading, setLoading] = useState(false);
-    const [txnData, setTxnData] = useState("");
+    const [txnData, setTxnData] = useState();
     useEffect(() => {
     {props.txnHash? fetchData():null};
         // setLoading(false);
