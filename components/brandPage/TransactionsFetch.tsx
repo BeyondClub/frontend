@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import TransactionHistoryBlock from './TransactionHistoryBlock';
 function TransactionModal(props) {
     const [loading, setLoading] = useState(false);
-    const [txnData, setTxnData] = useState();
+    const [txnData, setTxnData] = useState("");
     useEffect(() => {
     {props.txnHash? fetchData():setTxnData("Transaction Hash cant be Empty")};
     // setLoading(false);
