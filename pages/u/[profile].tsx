@@ -17,7 +17,7 @@ const Profile = () => {
 						title="Christmas Gift"
 						line1="Buy with $10 USD"
 						line2="Get the access of special Christmas event"
-						time=" 15 days"
+						time=" 95 days"
 						redeemed=" 150"
 						total="300"
 					/>
