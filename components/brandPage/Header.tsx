@@ -1,4 +1,4 @@
-import { WorldIDWidget } from '@worldcoin/id';
+
 import { useWeb3AuthContext } from 'context/SocialLoginContext';
 import { shortenAddress } from 'libs/helpers';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ const Header = () => {
                 {shortenAddress(address)}
               </button>
 
-              <WorldIDWidget
+              {/* <WorldIDWidget
                 actionId="wid_BPZsRJANxct2cZxVRyh80SFG" // obtain this from developer.worldcoin.org
                 signal="my_signal"
                 enableTelemetry
@@ -30,7 +30,7 @@ const Header = () => {
                 }
                 onError={(error) => console.error(error)}
                 debug={true} // to aid with debugging, remove in production
-              />
+              /> */}
             </>
           ) : (
             <button

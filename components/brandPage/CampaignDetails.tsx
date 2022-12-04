@@ -1,4 +1,5 @@
 import React from "react";
+import { WorldIDWidget } from '@worldcoin/id';
 import TicketModal from './TicketModal'
 import VideoModal from './VideoModal';
 import { Modal } from '@mantine/core';
@@ -35,9 +36,21 @@ const CampaignDetails = (props) => {
             </p>
           </div>
         </div>
+        <div className="my-4">
+        <WorldIDWidget
+                actionId="wid_BPZsRJANxct2cZxVRyh80SFG" // obtain this from developer.worldcoin.org
+                signal="my_signal"
+                enableTelemetry
+                onSuccess={(verificationResponse) =>
+                  console.log(verificationResponse)
+                }
+                onError={(error) => console.error(error)}
+                debug={true} // to aid with debugging, remove in production
+              />
+        </div>
         {/* <Notification/> */}
         <button
-          className="bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/3 my-3"
+          className="bg-[#32734E] text-[#fff] p-2 rounded-2xl w-1/3 my-3 py-3"
           onClick={openModal}
         >
           Redeem Now
