@@ -5,6 +5,10 @@ function TransactionModal(props) {
     // var data;
     const [loading, setLoading] = useState(false);
     const [txnData, setTxnData] = useState();
+    const [to, setTo] = useState();
+    const [at, setAt] = useState();
+    const [height, setHeight] = useState();
+    const [fees, setFees] = useState();
     useEffect(() => {
     {props.txnHash? fetchData():null};
         // setLoading(false);
@@ -18,6 +22,10 @@ function TransactionModal(props) {
         console.log('Data is',data.data.items[0]);
         setTxnData(data.data.items[0])
         setLoading(false)
+        setTo(data.data.items[0]['to_address'])
+        setAt(data.data.items[0]['to_address'])
+        setHeight(data.data.items[0]['to_address'])
+        setFees(data.data.items[0]['to_address'])
     }
   return (
     <Modal
@@ -30,8 +38,7 @@ function TransactionModal(props) {
         </div>
     {(!txnData)? <div className='flex w-full justify-center'><Loader className='my-10'/></div>: 
     <div> 
-        <TransactionHistoryBlock to={txnData['to_address']} at={txnData['block_signed_at']} height={txnData['block_height']} fees={txnData['fees_paid']
-} />
+        <TransactionHistoryBlock to={to} at={at} height={height} fees={fees} />
     </div>}
     </Modal>
   );
