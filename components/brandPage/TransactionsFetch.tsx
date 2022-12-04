@@ -16,7 +16,7 @@ function TransactionModal(props) {
         );
         let data = await response.json()
         console.log('Data is',data.data.items[0]);
-        setTxnData(data.data)
+        setTxnData(data.data.items[0])
         setLoading(false)
     }
   return (
@@ -30,7 +30,7 @@ function TransactionModal(props) {
         </div>
     {(!txnData)? <div className='flex w-full justify-center'><Loader className='my-10'/></div>: 
     <div> 
-        <TransactionHistoryBlock to={txnData.items[0]['to_address']} at={txnData.items[0]['block_signed_at']} height={txnData.items[0]['block_height']} fees={txnData.items[0]['fees_paid']
+        <TransactionHistoryBlock to={txnData['to_address']} at={txnData['block_signed_at']} height={txnData['block_height']} fees={txnData['fees_paid']
 } />
     </div>}
     </Modal>
