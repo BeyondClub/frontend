@@ -34,6 +34,25 @@ const Summary = () => {
 					question="What can I access if I have this collectible?"
 					answer={'You can get the access of special Christmas Event'}
 				/>
+				<div className='w-84'>
+					<div>
+						<p className="font-bold text-2xl my-2">Analytics</p>
+					</div>
+					<div className="flex justify-between align-center mx-4">
+						<div>
+							<p className="font-semibold text-xl">1500</p>
+							<p>Owners</p>
+						</div>
+						<div>
+							<p className="font-semibold text-xl">$10,000</p>
+							<p>Total Revenues</p>
+						</div>
+						<div>
+							<p className="font-semibold text-xl">150</p>
+							<p>Weekly Mints</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
