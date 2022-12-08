@@ -30,15 +30,16 @@ export default function Home() {
 						Supercharge your customer engagement with No-code NFT loyalty program.
 					</h2>
 					<div>
-						<Link href="/register" as="/register">
+						
 							<button
-								onClick={connect}
-								disabled={eoaWalletLoading}
+								disabled
+<!-- 								onClick={connect}
+								disabled={eoaWalletLoading} -->
 								className="bg-gray-900 cursor-pointer hover:bg-gray-800 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
 							>
-								Get Started <ArrowRightIcon className="ml-5" />
+								Coming Soon!
 							</button>
-						</Link>
+						 
 					</div>
 				</div>
 				<div className="cards grid place-items-end ml-auto">
