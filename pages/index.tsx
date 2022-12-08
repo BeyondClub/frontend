@@ -32,9 +32,7 @@ export default function Home() {
 					<div>
 						
 							<button
-								disabled
-<!-- 								onClick={connect}
-								disabled={eoaWalletLoading} -->
+								disabled 
 								className="bg-gray-900 cursor-pointer hover:bg-gray-800 px-6 rounded-full text-white mt-10 w-max py-4 flex items-center"
 							>
 								Coming Soon!
